@@ -1,16 +1,19 @@
 #!/usr/bin/python3
+"""Contains the def canUnlockAll(boxes) function"""
 
 
 def canUnlockAll(boxes):
-    n = len(boxes)
-    unlocked = set([0])
-    stack = [0]
+    """determines if all the boxes can be opened"""
 
-    while stack:
-        box = stack.pop()
-        for key in boxes[box]:
-            if key < n and key not in unlocked:
-                unlocked.add(key)
-                stack.append(key)
+    num_boxes = len(boxes)
+    keys = [0]
 
-                return len(unlocked) == n
+    for key in keys:
+        box = boxes[key]
+        for new_key in box:
+            if new_key < num_boxes and new_key not in keys:
+                keys.append(new_key)
+    if num_boxes == len(keys):
+        return True
+    else:
+        return False
