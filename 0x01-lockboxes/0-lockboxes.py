@@ -2,12 +2,15 @@
 
 
 def canUnlockAll(boxes):
+    n = len(boxes)
+    unlocked = set([0])
+    stack = [0]
 
-    myKeys = [0]
-    for key in myKeys:
-        for boxKey in boxes[key]:
-            if boxKey not in myKeys and boxKey < len(boxes):
-                myKeys.append(boxKey)
-                if len(myKeys) == len(boxes):
-                    return True
-                return False
+    while stack:
+        box = stack.pop()
+        for key in boxes[box]:
+            if key < n and key not in unlocked:
+                unlocked.add(key)
+                stack.append(key)
+
+                return len(unlocked) == n
