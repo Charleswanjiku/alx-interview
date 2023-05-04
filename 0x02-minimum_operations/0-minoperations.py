@@ -1,17 +1,18 @@
 #!/usr/bin/python3
 
+
+
 def minOperations(n):
-    if (type(n) != int):
+    
+    if not isinstance(n, int) or n <= 1:
         return 0
 
-     if (n < 2):
-         return 0
-
-     minOps = 0
-
-     for i in range(2, (n + 1)):
-         while (n % i == 0):
-             minOps += i
-             n //= i
-
-             return minOps
+    factors = []
+    i = 2
+    while i <= n:
+        if n % i == 0:
+            factors.append(i)
+            n = n / i
+        else:
+            i += 1
+    return sum(factors)
