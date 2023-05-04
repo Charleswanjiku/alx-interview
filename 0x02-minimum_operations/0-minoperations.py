@@ -1,22 +1,17 @@
 #!/usr/bin/python3
 
 def minOperations(n):
-    if n <= 0:
+    if (type(n) != int):
         return 0
 
-    operations = 0
-    clipboard = 0
-    H_chars = 1
+     if (n < 2):
+         return 0
 
+     minOps = 0
 
-    while H_chars < n:
-        if n % H_chars == 0:
-            clipboard = H_chars
-            operations += n // H_chars - 1
+     for i in range(2, (n + 1)):
+         while (n % i == 0):
+             minOps += i
+             n //= i
 
-        else:
-            operations += 1
-
-            H_chars += clipboard
-
-            return operations if H_chars == n else 0
+             return minOps
